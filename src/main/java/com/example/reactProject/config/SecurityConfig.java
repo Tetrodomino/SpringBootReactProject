@@ -18,7 +18,7 @@ public class SecurityConfig {
 			.headers(x -> x.frameOptions(y -> y.disable())) // CK Editor로 이미지 업로드 할 때 사용
 			.authorizeHttpRequests(auth -> auth.dispatcherTypeMatchers(DispatcherType.FORWARD)
 					.permitAll()
-					.requestMatchers("/user/register"
+					.requestMatchers("/user/register", "/react/**"
 							, "/img/**", "/css/**", "/js/**", "/error/**")
 					.permitAll()
 					.requestMatchers("/admin/**")
@@ -26,6 +26,7 @@ public class SecurityConfig {
 					.anyRequest()
 					.authenticated()
 			);
+		
 		return http.build();
 	}
 }
