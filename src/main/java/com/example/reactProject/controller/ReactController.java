@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.reactProject.dao.UserDao;
 import com.example.reactProject.entity.User;
@@ -37,7 +38,15 @@ public class ReactController {
 	@PostMapping("/form")
 	public String form (String uid, String uname) {
 		System.out.println("uid: " + uid + ", uname: " + uname);
-		return "uid: " + uid + ", uname: " + uname;
+		User user = new User(uid, uname);
+		uDao.insertUser(user);
+		return "redirect:/users";
+	}
+	
+	@PostMapping("/multi")
+	public String form (String uid, String uname, MultipartFile file) {
+		System.out.println("uid: " + uid + ", uname: " + uname + ", fname: " + file.getOriginalFilename());
+		return "uid: " + uid + ", uname: " + uname + ", fname: " + file.getOriginalFilename();
 	}
 	
 	@GetMapping("/users")

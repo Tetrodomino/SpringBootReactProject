@@ -18,6 +18,11 @@ public class User {
 	public User() {
 	}
 
+	public User(String uid, String uname) {
+		this.uid = uid;
+		this.uname = uname;
+	}
+
 	public User(String uid, String pwd, String uname, String email, String profile, String github, String insta,
 			String location) {
 		this.uid = uid;

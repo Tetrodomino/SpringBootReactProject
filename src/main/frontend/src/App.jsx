@@ -26,6 +26,8 @@ function App() {
   // }, []);
 
   const [users, setUsers] = useState([{}]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     axios.get('/rp/react/users')
       .then(res => {
@@ -41,6 +43,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <h3>{isLoading ? '로딩중' : ''}</h3>
         {/* <h3>
           받아온 값: {data ? data : '받아온 값이 없습니다'}
         </h3> */}
